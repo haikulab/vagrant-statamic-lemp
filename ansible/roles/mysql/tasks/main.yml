@@ -1,0 +1,11 @@
+---
+- name: install mysql-server
+ action: apt name=mysql-server state=installed
+
+- name: service mysql
+  action: service name=mysql state=started
+
+- name: write my.cnf
+  action: template src='mysql/templates/my.cnf.j2' dest='/etc/mysql/conf.d/mysqld-ansible.cnf'
+  notify:
+    - restart mysql

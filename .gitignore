@@ -1,0 +1,55 @@
+# running vagrant box related files
+.vagrant
+
+# ansible provisioning note file
+vagrant_ansible*
+
+# exclude content of the source folder
+source/*
+!source/.gitkeep
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+/Icon?
+ehthumbs.db
+Thumbs.db
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# sublime text 2 project files #
+################################
+*.sublime-project
+*.sublime-workspace
+
+# IDEs                         #
+################################
+.idea
+*phpstorm*
+nbprojects
+atlassian-ide-plugin.xml
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+# Marketing           #
+#######################
+marketing

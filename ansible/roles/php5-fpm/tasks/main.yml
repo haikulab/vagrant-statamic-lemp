@@ -1,0 +1,55 @@
+- name: Install php5-fpm and php5-cli
+  apt: pkg={{ item }} state=latest
+  with_items: php_packages
+
+- name: Check PHP version display
+  shell: grep -c 'On' /etc/php5/fpm/php.ini
+  register: expose_php
+  ignore_errors: yes
+
+- name: Change PHP version display
+  shell: sed -i 's/On/Off/' /etc/php5/fpm/php.ini
+  when: expose_php > 0
+  notify: restart php5-fpm
+
+- name: Check display_errors setting
+  shell: grep -c 'Off' /etc/php5/fpm/php.ini
+  register: display_errors
+  ignore_errors: yes
+
+- name: Change display_errors setting
+  shell: sed -i 's/Off/On/' /etc/php5/fpm/php.ini
+  when: display_errors > 0
+  notify: restart php5-fpm
+
+
+- name: Check default php user
+  shell: grep -c 'www-data' /etc/php5/fpm/pool.d/www.conf
+  register: user
+  ignore_errors: yes
+
+- name: Change default apache user
+  shell: sed -i 's/www-data/vagrant/' /etc/php5/fpm/pool.d/www.conf
+  when: user > 0
+  notify: restart php5-fpm
+
+
+- name: Check default php group
+  shell: grep -c 'www-data' /etc/php5/fpm/pool.d/www.conf
+  register: group
+  ignore_errors: yes
+
+- name: Change default apache group
+  shell: sed -i 's/www-data/vagrant/' /etc/php5/fpm/pool.d/www.conf
+  when: group > 0
+  notify: restart php5-fpm
+
+- name: Check cgi.fix_pathinfo to secure nginx-php5
+  shell: grep -c 'cgi.fix_pathinfo=1' /etc/php5/fpm/php.ini
+  register: fix_pathinfo
+  ignore_errors: yes
+
+- name: Disable cgi.fix_pathinfo to secure nginx-php5
+  shell: sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/' /etc/php5/fpm/php.ini
+  when: fix_pathinfo > 0
+  notify: restart php5-fpm

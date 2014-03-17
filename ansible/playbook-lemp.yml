@@ -1,0 +1,39 @@
+---
+- hosts: all
+  sudo: true
+  roles:
+    - init
+    - php5-fpm
+    - composer
+    - nginx
+  vars:
+    project_name: statamic
+    sys_packages:
+      - vim
+      - git
+      - tree
+      - htop
+    ppa:
+      - nginx/stable
+      - ondrej/php5
+    php_packages:
+      - php5-fpm
+      - php5-cli
+      - php5-curl
+      - php5-imagick
+      - php5-gd
+      - php5-mcrypt
+    application_env: development
+    nginx:
+      server_name: "statamic.dev statamic.10.0.1.100.xip.io"
+      doc_root: /var/www/statamic
+    apache_vhosts:
+      - {
+          servername: "statamic.dev",
+          server_alias: "project.dev statamic.10.0.1.100.xip.io",
+          documentroot: "/var/www/statamic",
+          serveradmin: "webmaster@localhost"
+        }
+    mysql:
+      bind_address: 127.0.0.1
+      key_buffer: 16M

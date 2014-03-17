@@ -1,0 +1,28 @@
+---
+- name: Update apt
+  sudo: yes
+  apt: update_cache=yes
+
+- name: Install System Packages
+  sudo: yes
+  apt: pkg={{ item }} state=latest force=yes
+  with_items:
+    - curl
+    - wget
+    - python-software-properties
+
+- name: Add ppa Repositories
+  sudo: yes
+  apt_repository: repo=ppa:{{ item }}
+  with_items: ppa
+
+- name: Install Extra Packages
+  sudo: yes
+  apt: pkg={{ item }} state=latest force=yes
+  with_items: sys_packages
+
+- name: Remove Apache2
+  sudo: yes
+  apt: pkg={{ item }} state=absent purge=yes
+  with_items:
+    - apache*
