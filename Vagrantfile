@@ -31,13 +31,13 @@ Vagrant.configure("2") do |config|
 
   ## webserver - nginx - 1
   config.vm.define :web do |web|
-    web.vm.hostname = "nginx-php-mysql"
+    web.vm.hostname = "nginx-php"
     # config.ssh.username = 'vagnrat1'
     # config.ssh.port = 22
 
     # set custom name to showup in Virtualbox
     web.vm.provider "virtualbox" do |vm|
-      vm.name = "nginx-php-mysql"
+      vm.name = "nginx-php"
     end
 
     ## http/https port mappings
