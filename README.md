@@ -1,4 +1,4 @@
-# Vagrant + Statamic
+# Vagrant + Statamic (nginx+php5-fpm)
 
 ![Vagrant + Statamic](assets/vagrant_statamic_header.jpg)
 
