@@ -6,8 +6,8 @@ A happy union of [Vagrant](http://www.vagrantup.com/) and [Statamic CMS](http://
 
 ## Works on
 
-+ ![Vagrant 1.6.2](http://b.repl.ca/v1/Vagrant-1.6.2-green.png)
-+ ![Statamic 1.7.8](http://b.repl.ca/v1/Statamic-1.7.8-green.png)
++ ![Vagrant 1.6.3](http://b.repl.ca/v1/Vagrant-1.6.3-green.png)
++ ![Statamic 1.8](http://b.repl.ca/v1/Statamic-1.8-green.png)
 
 ## Requirements
 
